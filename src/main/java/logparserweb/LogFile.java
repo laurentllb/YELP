@@ -58,7 +58,8 @@ public class LogFile {
 	}
 
 	public String getMyString() {
-			return null;
+			return "aNiceString";
+			//return null;
 	}
 
 	public int justDoIt() {
