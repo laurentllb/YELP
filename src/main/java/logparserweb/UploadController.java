@@ -1,5 +1,6 @@
 package logparserweb;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,10 +29,9 @@ public class UploadController {
 	public String checkSafeFileName(String fileName)
 	{
 
-		if (fileName != null && (fileName.contains("../") || fileName.contains("$") || fileName.contains("*")))
-		{
-			return null;
-		}
+
+	if (fileName != null && (fileName.indexOf("../") >0 || fileName.indexOf("$") > 0|| fileName.indexOf("*") > 0))
+		return null;
 
 		return fileName;
 	}
@@ -54,22 +54,22 @@ public class UploadController {
 				return "redirect:uploadStatus";
 			}
 
-
-
 			// Get the file and save it somewhere
 			byte[] bytes = filename.getBytes();
 
-			    String safeName=filename.getOriginalFilename();
-			//String safeName=checkSafeFileName(filename.getOriginalFilename());
-
+			//String safeName = checkSafeFileName(filename.getOriginalFilename());
+			String safeName=filename.getOriginalFilename(); 
+		
+	
 			if (safeName == null)
 			{
 				throw new IOException("Invalid Path");
 			}
 			else {
 
-				Path path = Paths.get(UPLOADED_FOLDER + safeName);
-
+				
+				Path path = Paths.get(UPLOADED_FOLDER + safeName);   //--- First, let's used some tainted data
+				//Path path = Paths.get("/var/tmp/"); 
 
 				Files.write(path, bytes);
 				Long fileId=fileService.createFile(filename.getOriginalFilename(),description);
@@ -93,10 +93,8 @@ public class UploadController {
 	@SuppressWarnings("fallthrough")
 	public String uploadStatus() {
 		int kate=0;
-
 		switch (kate)
 		{
-
 			case 0:
 			{
 				logger.log(Level.INFO,"bob is 0");
@@ -106,9 +104,6 @@ public class UploadController {
 				logger.log(Level.SEVERE,"bob is 1:");
 				break;
 			}
-
-
-
 		}
 
 		return "uploadStatus";
