@@ -57,6 +57,7 @@ public class UploadController {
 			// Get the file and save it somewhere
 			byte[] bytes = filename.getBytes();
 
+
 			//String safeName = checkSafeFileName(filename.getOriginalFilename());
 			String safeName=filename.getOriginalFilename(); 
 		
@@ -66,7 +67,6 @@ public class UploadController {
 				throw new IOException("Invalid Path");
 			}
 			else {
-
 				
 				Path path = Paths.get(UPLOADED_FOLDER + safeName);   //--- First, let's used some tainted data
 				//Path path = Paths.get("/var/tmp/"); 

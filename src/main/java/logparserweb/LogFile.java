@@ -56,5 +56,15 @@ public class LogFile {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
+	public String getMyString() {
+			return null;
+	}
+
+	public String justDoIt() {
+		String A = this.getMyString();
+		return A;
+	}
+
 	
 }
