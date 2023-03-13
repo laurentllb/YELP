@@ -61,9 +61,9 @@ public class LogFile {
 			return null;
 	}
 
-	public String justDoIt() {
-		String A = this.getMyString();
-		return A;
+	public int justDoIt() {
+		int aValue = this.getMyString().length();
+		return aValue;
 	}
 
 	
